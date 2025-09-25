@@ -24,4 +24,14 @@
 - Server (Python): see `requirements.txt`
 - Extension (VS Code): dev dependencies for TypeScript, ESLint, `vsce` for packaging
 
+### Sidebar Workflow
+- Activity Bar container: `helloZombieSidebar`, view: `helloZombieView` (Zombie Panel)
+- Icon: `Extension/media/zombie-icon.svg`
+- Provider: `ZombieSidebarProvider` registered in `src/extension.ts`
+- UI: Agent dropdown, prompt input, file picker, submit/open panel buttons
+- Actions:
+  - Submit → triggers `helloZombie.startChat` (main server first, Ollama fallback)
+  - Open Panel → opens the existing webview chat panel
+  - Pick File → opens native picker; selected URI is posted back to webview
+
 

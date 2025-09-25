@@ -7,6 +7,7 @@ import * as vscode from 'vscode';
 import * as https from 'https';
 import * as http from 'http';
 import { URL } from 'url';
+import { ZombieSidebarProvider } from './ZombieSidebarProvider';
 
 interface ChatRequest {
     agent: string;
@@ -253,6 +254,14 @@ export function activate(context: vscode.ExtensionContext) {
     });
 
     context.subscriptions.push(startChatCommand, openPanelCommand);
+    // Register sidebar webview view provider
+    const sidebarProvider = new ZombieSidebarProvider(context.extensionUri);
+    context.subscriptions.push(
+        vscode.window.registerWebviewViewProvider(
+            ZombieSidebarProvider.viewType,
+            sidebarProvider
+        )
+    );
 
     // Show welcome message
     vscode.window.showInformationMessage('Hello Zombie is ready! Use Command Palette to start chatting.');

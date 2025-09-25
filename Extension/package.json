@@ -28,6 +28,23 @@
   ],
   "main": "./out/extension.js",
   "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "helloZombieSidebar",
+          "title": "Hello Zombie",
+          "icon": "media/zombie-icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "helloZombieSidebar": [
+        {
+          "id": "helloZombieView",
+          "name": "Zombie Panel"
+        }
+      ]
+    },
     "commands": [
       {
         "command": "helloZombie.startChat",
