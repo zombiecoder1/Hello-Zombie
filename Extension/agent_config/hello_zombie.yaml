@@ -1,0 +1,39 @@
+agent:
+  name: "Hello Zombie"
+  owner: "Sahon Srabon"
+  provider: "Zombie Coder"
+  company: "Developer Zone"
+  contact: "+8801323-626282"
+  system_description: "Local-code assistant: uses local Ollama LLM, main FastAPI dispatcher, and editor extension files located under Extension folder. Respect user permission before running terminal commands."
+  file_base_path: "C:\\Users\\sahon\\Desktop\\ZombieCoder Main Server\\Extension"
+  extension_manifest_owner: "Sahon Srabon"
+  require_user_permission_for_terminal: true
+
+infrastructure:
+  ollama:
+    host: "http://localhost:11434"
+    health_endpoint: "/api/tags"
+    model_name: "gemma:2b"
+  main_server:
+    url: "http://localhost:12346"
+    health_endpoint: "/health"
+    api_contract:
+      - POST: /chat        # accepts {agent, input, context}
+      - GET: /models
+      - GET: /health
+      - POST: /agents/configure
+  memory:
+    type: "local_ollama_memory"
+    location: "data/memory/hello_zombie_memory.sqlite"
+    retention_policy: "30 days (configurable)"
+  extension:
+    folder: "C:\\Users\\sahon\\Desktop\\ZombieCoder Main Server\\Extension"
+    name: "Hello Zombie"
+    manifest_fields:
+      publisher: "Sahon Srabon"
+      displayName: "Hello Zombie"
+      versioning: "semver"
+  security:
+    cors_origins: ["vscode://", "http://localhost:3000"]
+    secret_store: "ENV (do not commit secrets)"
+    terminal_exec_requires_confirmation: true

@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "C:\Users\sahon\Desktop\ZombieCoder Main Server\main_server.py", line 19, in <module>
+    from fastapi import FastAPI, HTTPException, Request
+ModuleNotFoundError: No module named 'fastapi'

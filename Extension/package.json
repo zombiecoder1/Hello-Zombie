@@ -1,0 +1,127 @@
+{
+  "name": "hello-zombie",
+  "displayName": "Hello Zombie",
+  "description": "Local AI coding assistant powered by Ollama",
+  "version": "1.0.0",
+  "publisher": "Sahon Srabon",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sahonsrabon/hello-zombie"
+  },
+  "categories": [
+    "Other",
+    "Machine Learning",
+    "Snippets"
+  ],
+  "keywords": [
+    "ai",
+    "ollama",
+    "coding-assistant",
+    "local-ai"
+  ],
+  "activationEvents": [
+    "onCommand:helloZombie.startChat",
+    "onCommand:helloZombie.openPanel"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "helloZombie.startChat",
+        "title": "Start Chat with Hello Zombie",
+        "category": "Hello Zombie"
+      },
+      {
+        "command": "helloZombie.openPanel",
+        "title": "Open Hello Zombie Panel",
+        "category": "Hello Zombie"
+      }
+    ],
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "helloZombie.startChat",
+          "when": "true"
+        },
+        {
+          "command": "helloZombie.openPanel",
+          "when": "true"
+        }
+      ],
+      "editor/context": [
+        {
+          "command": "helloZombie.startChat",
+          "group": "helloZombie",
+          "when": "editorHasSelection"
+        }
+      ]
+    },
+    "views": {
+      "explorer": [
+        {
+          "id": "helloZombiePanel",
+          "name": "Hello Zombie",
+          "when": "true"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Hello Zombie",
+      "properties": {
+        "helloZombie.serverUrl": {
+          "type": "string",
+          "default": "http://localhost:12346",
+          "description": "Main server URL for Hello Zombie"
+        },
+        "helloZombie.ollamaUrl": {
+          "type": "string",
+          "default": "http://localhost:11434",
+          "description": "Ollama server URL used as fallback for chat requests"
+        },
+        "helloZombie.enableOllamaFallback": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable fallback to Ollama when main server is unavailable"
+        },
+        "helloZombie.fallbackModel": {
+          "type": "string",
+          "default": "gemma:2b",
+          "description": "Default Ollama model to use for fallback chat generation"
+        },
+        "helloZombie.requestTimeoutMs": {
+          "type": "number",
+          "default": 30000,
+          "description": "Request timeout in milliseconds for main server chat requests"
+        },
+        "helloZombie.requireConfirmation": {
+          "type": "boolean",
+          "default": true,
+          "description": "Require user confirmation before executing terminal commands"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.74.0",
+    "@types/node": "16.x",
+    "@typescript-eslint/eslint-plugin": "^5.45.0",
+    "@typescript-eslint/parser": "^5.45.0",
+    "eslint": "^8.28.0",
+    "typescript": "^4.9.4",
+    "@vscode/test-electron": "^2.2.0",
+    "vsce": "^2.15.0"
+  },
+  "dependencies": {}
+}

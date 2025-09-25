@@ -1,0 +1,91 @@
+<section id="server-monitoring" class="content-section">
+    <div class="card-grid">
+        <div class="stat-card">
+            <div class="stat-value success">98%</div>
+            <div class="stat-label">System Uptime</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value warning">45%</div>
+            <div class="stat-label">CPU Usage</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value primary">3.2GB</div>
+            <div class="stat-label">Memory Used</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value success">125MB/s</div>
+            <div class="stat-label">Network I/O</div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Real-time Server Metrics</h3>
+            <div class="card-actions">
+                <button class="btn" onclick="startLiveMonitoring()">
+                    <i class="fas fa-play"></i> Start Live
+                </button>
+                <button class="btn" onclick="exportMetrics()">
+                    <i class="fas fa-download"></i> Export
+                </button>
+            </div>
+        </div>
+        <div class="card-content">
+            <div id="metrics-chart" style="height: 300px; background: var(--bg-tertiary); border-radius: 6px; padding: 16px;">
+                <div style="text-align: center; padding: 60px; color: var(--text-secondary);">
+                    <i class="fas fa-chart-line" style="font-size: 48px; margin-bottom: 16px;"></i>
+                    <p>Live metrics chart will appear here when monitoring starts</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Service</th>
+                    <th>Status</th>
+                    <th>Response Time</th>
+                    <th>Requests/Min</th>
+                    <th>Errors</th>
+                    <th>Last Check</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Main Server (12346)</td>
+                    <td><span class="status-dot status-online"></span> Online</td>
+                    <td>45ms</td>
+                    <td>125</td>
+                    <td>0</td>
+                    <td>Just now</td>
+                </tr>
+                <tr>
+                    <td>Ollama (11434)</td>
+                    <td><span class="status-dot status-online"></span> Online</td>
+                    <td>120ms</td>
+                    <td>89</td>
+                    <td>2</td>
+                    <td>30s ago</td>
+                </tr>
+                <tr>
+                    <td>Database</td>
+                    <td><span class="status-dot status-online"></span> Online</td>
+                    <td>15ms</td>
+                    <td>230</td>
+                    <td>0</td>
+                    <td>Just now</td>
+                </tr>
+                <tr>
+                    <td>External APIs</td>
+                    <td><span class="status-dot status-warning"></span> Slow</td>
+                    <td>450ms</td>
+                    <td>56</td>
+                    <td>5</td>
+                    <td>1m ago</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
